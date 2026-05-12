@@ -1,510 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Football and Country Indicators</title>
-
-  <style>
-    :root {
-      --bg: #f7f4ef;
-      --card: #fffaf2;
-      --card-soft: #efe7da;
-      --text: #111827;
-      --muted: #4b5563;
-      --line: #d6c7b2;
-      --accent: #c2410c;
-      --accent-dark: #7c2d12;
-      --shadow: 0 20px 45px rgba(17, 24, 39, 0.08);
-      --radius: 24px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .page {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    header {
-      padding: 34px 0 18px;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(247, 244, 239, 0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(214, 199, 178, 0.65);
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .brand {
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      font-size: 1.05rem;
-    }
-
-    .nav-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: flex-end;
-    }
-
-    .nav-links a {
-      font-size: 0.88rem;
-      color: var(--muted);
-      padding: 8px 12px;
-      border: 1px solid transparent;
-      border-radius: 999px;
-    }
-
-    .nav-links a:hover {
-      border-color: var(--line);
-      background: var(--card-soft);
-      color: var(--text);
-    }
-
-    .hero {
-      padding: 84px 0 54px;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 54px;
-      align-items: end;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: var(--card-soft);
-      border: 1px solid var(--line);
-      color: var(--accent-dark);
-      font-weight: 700;
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    h1 {
-      margin: 22px 0 22px;
-      font-size: clamp(2.6rem, 6vw, 5.7rem);
-      line-height: 0.92;
-      letter-spacing: -0.075em;
-    }
-
-    .hero p {
-      font-size: 1.12rem;
-      color: var(--muted);
-      max-width: 680px;
-      margin: 0;
-    }
-
-    .hero-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-      border-radius: var(--radius);
-      padding: 26px;
-    }
-
-    .hero-card h2 {
-      margin: 0 0 12px;
-      font-size: 1.25rem;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-card ul {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-    }
-
-    .section {
-      padding: 64px 0;
-      border-top: 1px solid rgba(214, 199, 178, 0.75);
-    }
-
-    .story-block {
-      display: grid;
-      grid-template-columns: minmax(280px, 0.85fr) minmax(420px, 1.35fr);
-      gap: 34px;
-      align-items: center;
-    }
-
-    .story-block.reverse {
-      grid-template-columns: minmax(420px, 1.35fr) minmax(280px, 0.85fr);
-    }
-
-    .story-block.reverse .text-panel {
-      order: 2;
-    }
-
-    .story-block.reverse .plot-panel {
-      order: 1;
-    }
-
-    .section-number {
-      color: var(--accent);
-      font-weight: 800;
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 10px;
-    }
-
-    h2 {
-      margin: 0 0 18px;
-      font-size: clamp(1.8rem, 3vw, 3.1rem);
-      line-height: 1.02;
-      letter-spacing: -0.055em;
-    }
-
-    .text-panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: var(--shadow);
-    }
-
-    .text-panel p {
-      margin: 0 0 16px;
-      color: var(--muted);
-    }
-
-    .text-panel p:last-child {
-      margin-bottom: 0;
-    }
-
-    .note {
-      margin-top: 20px;
-      padding: 15px 16px;
-      border-left: 4px solid var(--accent);
-      background: var(--card-soft);
-      color: var(--text);
-      border-radius: 14px;
-      font-size: 0.95rem;
-    }
-
-    .plot-panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      min-height: 520px;
-    }
-
-    .plot-header {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--line);
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: center;
-      background: var(--card-soft);
-    }
-
-    .plot-header span {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .plot-header a {
-      color: var(--accent-dark);
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
-
-    iframe {
-      width: 100%;
-      height: 640px;
-      border: 0;
-      display: block;
-      background: var(--bg);
-    }
-
-    .placeholder {
-      min-height: 520px;
-      display: grid;
-      place-items: center;
-      padding: 30px;
-      color: var(--muted);
-      text-align: center;
-      background: repeating-linear-gradient(
-        -45deg,
-        #fffaf2,
-        #fffaf2 14px,
-        #f3eadc 14px,
-        #f3eadc 28px
-      );
-    }
-
-    .placeholder code {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 6px 10px;
-      background: #fffaf2;
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      color: var(--accent-dark);
-    }
-
-    footer {
-      padding: 36px 0 54px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      border-top: 1px solid rgba(214, 199, 178, 0.75);
-    }
-
-    @media (max-width: 920px) {
-      header {
-        position: static;
-      }
-
-      nav,
-      .hero,
-      .story-block,
-      .story-block.reverse {
-        grid-template-columns: 1fr;
-      }
-
-      nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .story-block.reverse .text-panel,
-      .story-block.reverse .plot-panel {
-        order: initial;
-      }
-
-      iframe {
-        height: 560px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-game Advantage in Football Matches</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@400;600&family=Roboto:wght@400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <header>
-    <nav class="page">
-      <a class="brand" href="#top">Football × Country Data</a>
-      <div class="nav-links">
-        <a href="#introduction">Introduction</a>
-        <a href="#section-1">Correlation</a>
-        <a href="#section-2">Club advantage VS country</a>
-        <a href="#section-3">Section 3</a>
-        <a href="#section-4">Section 4</a>
-      </div>
-    </nav>
-  </header>
+    <main class="macbook-pro">
+        <header class="hero">
+            <div class="dortmund-tifo-banner-image">
+                <!-- Background image will be applied via CSS or img tag -->
+                <img src="dortmund-tifo-banner-image.jpeg" alt="Dortmund Tifo Banner" class="hero-bg-image">
+            </div>
+            <h1 class="hero-title">Home-game advantage in football matches</h1>
+            <p class="hero-subtitle">
+                Is it real? How does it vary around the globe? 
+                Do social or economic factors play a role?
+            </p>
+        </header>
 
-  <main id="top" class="page">
-    <section class="hero">
-      <div>
-        <span class="eyebrow">Social Data Analysis</span>
-        <h1>Football performance through country indicators</h1>
-        <p>
-          This page is designed as a connected visual story. Each section combines a short written interpretation with a plot placed next to the text, so the reader can move from explanation to evidence without leaving the page.
-        </p>
-      </div>
+        <article class="main-body">
+            <div class="intro-text">
+                <p>The Champions League is witness to a quite a few historic collapses in the 2nd leg of crucial matches, when a big lead gained in the 1st leg was completely overturned. Barcelona losing to Roma (0-3, after a 4-1 lead), Liverpool (0-4, after a 3-0), and PSG losing to Barcelona (1-6, after a 4-0) come to mind. One thing in common? The winners were playing at home, with a very supportive fan turnout.</p>
+                <p>One of the most widely discussed phenomena in football is the so-called home advantage: the idea that teams tend to perform better when playing in their own stadium. Factors such as crowd support, travel fatigue, familiarity with the pitch, and even referee bias have often been proposed as possible explanations for this effect. But is the effect real?</p>
+            </div>
+            <div class="notebook-link-wrapper">
+                <a href="analysis_notebook.ipynb" download class="notebook-button">
+                    Download notebook
+                </a>
+            </div>
+            <section class="section-distributions-of-home-advantage">
+                <h2 class="section-title">Does 'home advantage' exist?</h2>
+                <div class="body-content">
+                    <p>By visualizing the difference in home and away points won by each team per game, we can observe whether playing at home consistently provides a measurable competitive benefit. The datasets used feature information for 88 countries and 1975 clubs in the period 2010-2016.</p>
+                    
+                    <div class="visualization-placeholder placeholder-for-points-difference-distribution" id="viz-points-difference">
+                        <iframe src="visualizations/Points Difference Between Home and Away Games.html" class="responsive-iframe" scrolling="no" frameborder="0"></iframe>
+                    </div>
+                    
+                    <p>From the hostile fortresses of South America to the pristine pitches of Western Europe, the data confirms what football fanatics have known for a long time, that home advantage has a noticeable effect on the score line. But, the tails are quite long on either side: while most teams stand to gain from a home-ground game, some have a record of being at a disadvantage.</p>
+                    
+                    <h3 class="subsection-title">Regional variations</h3>
+                    <p>To see whether the effect varies across geographic regions, below is a plot of point difference distribution divided by geographic regions. Each color represents a continent.</p>
+                    
+                    <div class="visualization-placeholder placeholder-for-regional-distribution-of-points" id="viz-regional-distribution">
+                        <iframe src="visualizations/Regional_Distribution_of_Points_Difference_Per_Game.png" class="responsive-iframe" scrolling="no" frameborder="0"></iframe>
+                    </div>
+                    
+                    <div class="regional-analysis-text">
+                        <p>A globally observable phenomenon, but its intensity and reliability vary dramatically depending on the region. The presence of left-sided tails across the board proves that home advantage is not an absolute rule, and the wildly different shapes of these curves indicate that geography and infrastructure severely alter its impact.</p>
+                        <p>Established European football environments display a highly predictable home advantage, with point differences tightly clustered between 0.2 and 0.4. This low variance is likely due to standardized league conditions, uniform pitch quality, and relatively short travel distances across the continent.</p>
+                        <p>Leagues in Latin America and Africa exhibit extreme volatility, featuring "fat tails" in their data that indicate massive home advantages frequently exceeding a full point. This could mean that grueling away travel, severe environmental shifts, and fiercely hostile stadium atmospheres heavily paralyze visiting teams.</p>
+                        <p>The median Baltic team's unique lack of home advantage might be due to the region's compact geography and uniform climate, which would eliminate travel fatigue for visiting squads.</p>
+                    </div>
+                </div>
+            </section>
 
-      <aside class="hero-card">
-        <h2>Page structure</h2>
-        <ul>
-          <li>Section 1 introduces the interactive correlation plot.</li>
-          <li>Section 2 explores the home advantage for clubs inside their country.</li>
-          <li>Section 3...</li>
-        </ul>
-      </aside>
-    </section>
-     
-    <section id="introduction" class="section">
-      <div class="story-block reverse">
-        <article class="text-panel">
-          <div class="section-number">Introduction</div>
-          <h2>Does home advantage exist in football?</h2>
-          <p>
-            One of the most widely discussed phenomena in football is the so-called home advantage: the idea that teams tend to perform better when playing in their own stadium. Factors such as crowd support, travel fatigue, familiarity with the pitch, and even referee bias have often been proposed as possible explanations for this effect.
-          </p>
-          <p>
-            To explore whether home advantage is actually reflected in football results, the following analysis examines the distribution of points obtained and goals scored and received at home compared to away matches across different teams and competitions. By visualizing the point advantage distribution, we can observe whether playing at home consistently provides a measurable competitive benefit. But how can we explain the obvserved patterns? In the next sections, we will explore country and club level indicators to see if they can help us understand the underlying factors that contribute to home advantage in football.
-          </p>
+            <section class="section-corruption-and-home-advantage">
+                <h2 class="section-title">Corruption & home-advantage</h2>
+                <div class="body-content">
+                    <p>It is our hypothesis that a society with more corruption would allow more opportunities to illegally influence match officials like referees and linesmen. Home-ground staff like security personnel and ball boys could also try to aid the home team, for example, by wasting time when a ball goes out.</p>
+                    
+                    <div class="visualization-placeholder placeholder-for-corruption-plot" id="viz-corruption">
+                        <iframe src="visualizations/Corruption vs Home Advantage.html" class="responsive-iframe" scrolling="no" frameborder="0"></iframe>
+                    </div>
+                    
+                    <p>In our dataset, there is a moderate correlation between the perceived corruption in a society and the home advantage enjoyed by its football teams. Partly because, in countries where institutional integrity is low, match officials are historically more susceptible to the intense social pressure of a hostile home crowd. The weaker the national institutions, the more the referee appeases the immediate, aggressive local majority to avoid confrontation.</p>
+                </div>
+            </section>
 
-          <p>
-            For this project, we will use data from the <a href="https://www.kaggle.com/datasets/drgilermo/home-advantage-in-soccer-and-basketball?select=SoccerLEagues.csv" target="_blank">Football Results Dataset</a>, which contains detailed match information for various leagues and competitions. We will focus on key metrics such as points obtained at home and away, goals scored and conceded, and the overall distribution of these outcomes across different teams and countries. The datasets features information for 88 countries and 1975 clubs in the period 2010-2016, which allows us to explore a wide range of contexts and performance patterns.
-          </p>
+            <section class="section-economic-influences">
+                <h2 class="section-title">Economic influences</h2>
+                <div class="body-content">
+                    <p>This section explores how different socioeconomic factors may be related to football results across the countries included in the dataset. More specifically, the aim is to analyze whether differences in living conditions, economic development, and employment structure are associated with variations in home advantage. These factors may influence the atmosphere around football matches, the level of local support, travel conditions, stadium environments, or other contextual aspects that can create more or less favorable conditions for home teams.</p>
+                    
+                    <div class="visualization-placeholder placeholder-for-correlation-plot" id="viz-economic-correlation">
+                        <iframe src="visualizations/country_corr_plot.html" class="responsive-iframe" scrolling="no" frameborder="0"></iframe>
+                    </div>
+                    
+                    <div class="economic-analysis-text">
+                        <p>The strongest correlations with home advantage are found for GDP per capita and the percentage of the population working in agriculture or services. The remaining socioeconomic variables are less useful for the analysis, since most countries are highly clustered and only a few outliers stand out. As shown in the plot, GDP per capita and the share of the population employed in services are negatively correlated with home advantage. In contrast, the share of the population working in agriculture shows a positive correlation. These relationships are coherent, since countries with a higher dependence on agriculture tend to be less economically developed, whereas countries with a larger service sector usually have higher levels of development. Therefore, both variables seem to reflect similar underlying socioeconomic patterns.</p>
+                        <p>It is also interesting to observe that the correlation between agricultural employment and home advantage is almost the opposite of the correlation between service employment and home advantage. This suggests that countries with a stronger industrial profile may occupy a more neutral position between the two extremes. This interpretation is also supported by the fact that the percentage of the population working in industry is the least correlated of these three employment-related variables with home advantage.</p>
+                        <p>To sum up, these three factors suggest that countries with lower levels of socioeconomic development tend to show a stronger home advantage. In this context, football may have a stronger social and emotional role, acting as a form of collective identity, local pride, or escape from everyday difficulties. As a result, home support may become more intense, creating a more favorable atmosphere for local teams and potentially increasing the pressure on visiting teams.</p>
+                    </div>
+                </div>
+            </section>
 
-          
+            <section class="section-interactive-map">
+                <h2 class="section-title">Interactive Map</h2>
+                <div class="body-content">
+                    <p>In this section, you can explore how club-level home advantage compares to country-level indicators, and whether there are any interesting patterns that emerge from this comparison.</p>
+                    <p>In the map available below, you can click in your country and then in your favorite club to see how their home advantage compares to the average home advantage of the country across the period available in the dataset. Home advantage is measured with two metrics: the home/away point difference per game and the away goal difference per game. The first metric explicitly says how better (or worse) are your results at home, while the second one is a way to measure how different is your performance while playing outside.</p>
+                    <p>If we analyze the case of some teams we can spot interesting patterns. For example, in Spain, we can see Atlético de Madrid is usually under the average home advantage of the country. This could be a consequence of the influence of Real Madrid, a much more popular club in the same city. However, we can see two strong peaks in point difference per game in 2010 and 2012. The peak in 2010 is easy to explain, because the club won the UEFA Super Cup, played at the start of the season, and made great and charismatic signings as Diego Godín, Filipe Luís, Diego Costa and Juanfran. In 2012, the team won the UEFA Super CUp another time, and Oliver Torres, from the youth team, made his debut in the first team.</p>
+                </div>
+            </section>
         </article>
 
-        <figure class="plot-panel">
-          <div class="placeholder">
-            Introduction section does not have a plot. You can use this space for an overview image, a key finding, or simply keep it as an introduction without a visualization.
-          </div>
-        </figure>
-      </div>
-
-    <section id="section-1" class="section">
-      <div class="story-block">
-        <article class="text-panel">
-          <div class="section-number">Section 1</div>
-          <h2>Do country indicators explain football outcomes?</h2>
-          <p>
-            The first visualization explores whether socioeconomic indicators are associated with football performance. The user can switch between football metrics and country-level factors to compare the strength and direction of each relationship.
-          </p>
-          <p>
-            This plot should not be read as causal evidence. Instead, it works as an exploratory tool: it helps identify which variables show stronger patterns, which countries behave as outliers, and where the relationship appears weak or noisy.
-          </p>
-          <div class="note">
-            Replace this text with your final interpretation once you decide which comparison is the most important for the story.
-          </div>
-        </article>
-
-        <figure class="plot-panel">
-          <div class="plot-header">
-            <span>Interactive scatter plot</span>
-            <a href="visualizations/country_corr_plot.html" target="_blank">Open full page</a>
-          </div>
-          <iframe 
-              src="visualizations/country_corr_plot.html"
-              style="
-                  width: 100%;
-                  height: 430px;
-                  border: none;
-                  overflow: hidden;
-              "
-              scrolling="no">
-          </iframe>
-        </figure>
-      </div>
-    </section>
-
-    <section id="section-2" class="section">
-      <div style="display:block;">
-        <article class="text-panel">
-          <div class="section-number">Section 2</div>
-          <h2>Club home advantage VS country</h2>
-          <p>
-            As you can guess, home advantage is not equally distributed inside each country. Some clubs show a much stronger home performance than others, and this can be related to the size of the club, the recent performance, the latest transfers or even regional factors such as the distance to other clubs, the size of the city, or the local culture of football support. In this section, you can explore how club-level home advantage compares to country-level indicators, and whether there are any interesting patterns that emerge from this comparison.
-          </p>
-          <p>
-            In the map available below, you can click in your country and then in your favourite club to see how their home advantage compares to the average home advantage of the country across the period available in the dataset. Home advantage is measured with two metrics: the home/away point difference per game and the away goal difference per game.The first metric explicitly says how better (or worse) are your results at home, while the second one is a way to measure how different is your performance while playing outside.
-          </p>
-          <p>
-            If we analyze the case of some teams we can spot interesting patterns. For example, in Spain, we can see Atlético de Madrid is usually under the average home advantage of the country. This could be a consecuence of the influence of Real Madrid, a much more popular club in the same city. However, we can see two strong peaks in point difference per game in 2010 and 2012. The peak in 2010 is easy to explain, because the club won the UEFA Super Cup, played at the start of the seanson, and made great and charismatic signings as Diego Godín, Filipe Luís, Diego Costa and Juanfran. In 2012, the team won the UEFA SUper CUp another time, and Oliver Torres, from the youth team, made his debut in the first team.
-          </p>
-          <p>
-             
-          </p>
-          <div class="note">
-            Save your second plot as <code>visualizations/plot_2.html</code> or change the iframe route below.
-          </div>
-        </article>
-
-        <figure class="plot-panel" style="width:100%;">
-          <div class="plot-header">
-            <span>Plot 2</span>
-            <a href="visualizations/club_home_advantage_map.html" target="_blank">Open full page</a>
-          </div>
-          <iframe 
-              src="visualizations/club_home_advantage_map.html"
-              title="Second visualization"
-              style="
-                  width:100%;
-                  height:580px;
-                  border:none;
-              ">
-          </iframe>
-        </figure>
-      </div>
-    </section>
-
-    <section id="section-3" class="section">
-      <div class="story-block">
-        <article class="text-panel">
-          <div class="section-number">Section 3</div>
-          <h2>Third analytical layer</h2>
-          <p>
-            This section is prepared for a third visualization. You can use it to introduce a different angle of analysis, such as temporal evolution, distribution of results, or comparisons across groups of countries.
-          </p>
-          <p>
-            The purpose of the text is to guide the interpretation of the plot. Try to explain what the reader should look at first, what pattern matters, and what limitation should be kept in mind.
-          </p>
-          <div class="note">
-            Save your third plot as <code>visualizations/plot_3.html</code> or update the iframe source.
-          </div>
-        </article>
-
-        <figure class="plot-panel">
-          <div class="plot-header">
-            <span>Plot 3</span>
-            <a href="visualizations/plot_3.html" target="_blank">Open full page</a>
-          </div>
-          <iframe src="visualizations/plot_3.html" title="Third visualization"></iframe>
-        </figure>
-      </div>
-    </section>
-
-    <section id="section-4" class="section">
-      <div class="story-block reverse">
-        <article class="text-panel">
-          <div class="section-number">Section 4</div>
-          <h2>Final visualization and conclusion</h2>
-          <p>
-            The last section can be used to close the narrative. Ideally, this plot should connect with the previous findings and help summarize what the analysis suggests overall.
-          </p>
-          <p>
-            You can use this space to discuss the main conclusion, mention uncertainty, and explain why the observed patterns should be interpreted carefully.
-          </p>
-          <div class="note">
-            Save your fourth plot as <code>visualizations/plot_4.html</code> or update the iframe source.
-          </div>
-        </article>
-
-        <figure class="plot-panel">
-          <div class="plot-header">
-            <span>Plot 4</span>
-            <a href="visualizations/plot_4.html" target="_blank">Open full page</a>
-          </div>
-          <iframe src="visualizations/plot_4.html" title="Fourth visualization"></iframe>
-        </figure>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="page">
-      Built with GitHub Pages · Place this file as <code>index.html</code> and keep your plots inside <code>visualizations/</code>.
-    </div>
-  </footer>
+        <section class="section-map-and-footer">
+            <div class="visualization-placeholder placeholder-for-map" id="viz-interactive-map">
+                <iframe src="visualizations/club_home_advantage_map.html" class="responsive-iframe" scrolling="no" frameborder="0"></iframe>
+            </div>
+            <footer class="footer">
+                
+                <p>group 25 - Nicolás Sandoval Fernández s260145 - Shashwata Malakar s257662</p>
+            </footer>
+        </section>
+    </main>
 </body>
 </html>

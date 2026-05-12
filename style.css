@@ -1,0 +1,300 @@
+:root {
+  /* Colors */
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-gray-light: #cecece;
+  --color-gray-medium: #cfcfcf;
+  --color-primary-blue: #301eb9;
+
+  /* Typography - Font Families */
+  --font-family-heading: 'Anek Latin', sans-serif;
+  --font-family-body: 'Roboto', sans-serif;
+
+  /* Typography - Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+
+  /* Typography - Font Sizes */
+  --font-size-base: 16px;
+  --font-size-lg: 24px;
+  --font-size-xl: 32px;
+  --font-size-xxl: 64px;
+
+  /* Spacing */
+  --spacing-xs: 12px;
+  --spacing-sm: 16px;
+  --spacing-md: 20px;
+  --spacing-lg: 24px;
+  --spacing-xl: 64px;
+  --spacing-xxl: 72px;
+  --spacing-3xl: 96px;
+  --spacing-4xl: 133px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-body);
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+  line-height: normal;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* Base Layout */
+.macbook-pro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+  align-items: center;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-white);
+}
+
+/* Header / Hero Section */
+.hero {
+  background-color: var(--color-gray-light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  height: 720px;
+  align-items: center;
+  overflow: hidden;
+  padding: var(--spacing-4xl) var(--spacing-3xl);
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dortmund-tifo-banner-image {
+  position: absolute;
+  width: 1749.5px;
+  height: 1178px;
+  left: calc(50% - 10.5px);
+  top: calc(50% + 33px);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+
+.hero-bg-image {
+  position: absolute;
+  inset: 0;
+  max-width: none;
+  object-fit: cover;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-title {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-xxl);
+  color: var(--color-white);
+  max-width: 720px;
+  text-align: flex-start;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-subtitle {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-lg);
+  color: var(--color-white);
+  max-width: 720px;
+  text-align: flex-start;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  white-space: normal;
+}
+
+/* Main Content Area */
+.main-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+  align-items: center;
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-xl);
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.notebook-link-wrapper {
+  max-width: 720px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: -48px;
+  margin-bottom: -24px;
+}
+
+.notebook-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 14px;
+  border: 1px solid var(--color-primary-blue);
+  color: #301eb9;
+  background-color: transparent;
+  text-decoration: none;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  transition: all 0.2s ease;
+}
+
+.notebook-button:hover {
+  background-color: #301eb9;
+  color: var(--color-white);
+}
+
+.intro-text {
+  max-width: 720px;
+  width: 100%;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+}
+
+/* Sections */
+.section-distributions-of-home-advantage,
+.section-corruption-and-home-advantage,
+.section-economic-influences,
+.section-interactive-map {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg); /* 24px gap default for most sections */
+  align-items: flex-start;
+  max-width: 720px;
+  width: 100%;
+  position: relative;
+}
+
+/* The first section explicitly had a 20px gap in Figma */
+.section-distributions-of-home-advantage {
+  gap: var(--spacing-md);
+}
+
+.section-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-black);
+  margin: 0;
+  width: 100%;
+}
+
+.subsection-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-black);
+  margin: 0;
+  width: 100%;
+}
+
+.body-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+  width: 100%;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-regular);
+}
+
+.regional-analysis-text,
+.economic-analysis-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  width: 100%;
+}
+
+/* Visualization Placeholders */
+.visualization-placeholder {
+  width: 100%;
+  background-color: var(--color-gray-medium);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.responsive-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+#viz-points-difference,
+#viz-regional-distribution,
+#viz-corruption {
+  aspect-ratio: 720 / 480;
+}
+
+#viz-economic-correlation {
+  aspect-ratio: 720 / 400;
+}
+
+/* Map Section */
+.section-map-and-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+#viz-interactive-map {
+  width: 100%;
+  height: 960px;
+  background-color: var(--color-gray-medium);
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-sm) var(--spacing-xl);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.footer p {
+  color: var(--color-white);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  margin: 0;
+  white-space: nowrap;
+}
